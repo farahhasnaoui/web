@@ -1,3 +1,16 @@
+<?PHP
+include "../../core/circuitC.php";
+$circuit1C=new circuitC();
+
+  $listecircuits=$circuit1C->affichercircuits();  
+
+//var_dump($listecircuits->fetchAll());
+?>
+
+
+
+
+<!doctype html>
 <html lang="zxx">
     
 <!-- Mirrored from templates.envytheme.com/povo/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 21 Nov 2019 22:13:24 GMT -->
@@ -11,8 +24,7 @@
         <!-- Meanmenu CSS -->
         <link rel="stylesheet" href="assets/css/meanmenu.css">
         <!-- Fontawesome Min CSS -->
-        <link rel="<!doctype html>
-stylesheet" href="assets/css/fontawesome.min.css">
+        <link rel="stylesheet" href="assets/css/fontawesome.min.css">
         <!-- Animate Min CSS -->
         <link rel="stylesheet" href="assets/css/animate.min.css">
         <!-- Magnific CSS -->
@@ -316,7 +328,7 @@ stylesheet" href="assets/css/fontawesome.min.css">
                                     </div>
                                         
                                     <div class="main-form">
-                                        <form       >
+                                        <form>
                                             <div class="row m-0">
                                                 <div class="col-lg-3 col-md-3 p-0">
                                                     <div class="form-group mb-0">
@@ -324,13 +336,13 @@ stylesheet" href="assets/css/fontawesome.min.css">
                                                             <i class="flaticon-safari"></i>
                                                             <select class="form-control">
                                                                 <option value="category">Where To?</option>
-                                                                <option value="paris">paris</option>
-                                                                <option value="barcelone">barcelone</option>
-                                                                <option value="portugale">portugale</option>
-                                                                <option value="maroc">maroc</option>
-                                                                <option value="croitia">croitia</option>
-
-                                                                <option value="germany">Germany</option>
+                                                                <option value="1">Australia</option>
+                                                                <option value="2">Maldives</option>
+                                                                <option value="3">Thailand</option>
+                                                                <option value="4">Canada</option>
+                                                                <option value="5">Japan</option>
+                                                                <option value="6">Jordan</option>
+                                                                <option value="7">Germany</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -359,8 +371,14 @@ stylesheet" href="assets/css/fontawesome.min.css">
                                                         <div class="select-box">
                                                             <i class="flaticon-pin"></i>
                                                             <select class="form-control">
-                                                                <option value="category">Vol</option>
-
+                                                                <option value="category">Travel Type</option>
+                                                                <option value="1">Arts</option>
+                                                                <option value="2">Beauty</option>
+                                                                <option value="3">Health</option>
+                                                                <option value="4">Hotels</option>
+                                                                <option value="5">Real Estate</option>
+                                                                <option value="6">Restaurant</option>
+                                                                <option value="7">Shopping</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -368,7 +386,7 @@ stylesheet" href="assets/css/fontawesome.min.css">
                                                 
                                                 <div class="col-lg-3 col-md-3 p-0">
                                                     <div class="form-group mb-0">
-                                                        <input type="text" class="form-control" name="max" placeholder="maximum price">
+                                                        <input type="text" class="form-control" name="name" placeholder="Maximum Price">
                                                     </div>
 
                                                     <div class="banner-icon">
@@ -1163,131 +1181,50 @@ stylesheet" href="assets/css/fontawesome.min.css">
         <section class="blog-section ptb-100">
             <div class="container">
                 <div class="blog-title">
-                    <h2>Latest Blog Post</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna commodo viverra maecenas accumsan. </p>
+                    <h2>Latest Circuit Post</h2>
+                    
                 </div>
 
                 <div class="row">
+                  
                     <div class="blog-slider owl-carousel owl-theme">
+                        <?PHP $i=0; foreach($listecircuits as $row2){ $i=$i+1;?>
                         <div class="col-lg-12 col-md-12">
+                          <form action="singlecirc.php" method="post">
+                                <button style="background-color:transparent;border:none;" type="submit" value="envoyer">
                             <div class="single-blog-post">
+                                
                                 <figure>
-                                    <a href="#">
-                                        <img src="assets/img/blog/1.jpg" alt="blog-img">
+                                <a name="aa" value="<?PHP echo $row2['idCircuit']; ?>" >
+                                        <img class="imgcircuit" src="../entities/img/<?PHP echo $row2['photo']; ?>">
                                     </a>
+                                    <input type="text" name="idCircuit" value="<?PHP echo $row2['idCircuit']; ?>" hidden>
                                 </figure>
                                 
                                 <div class="blog-post-content">
-                                    <span>22 December 2019</span>
-                                    <h3><a href="#">The security risks of changing package owners</a></h3>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum Nam finibus.</p>
+                                    <span><?PHP echo $row2['date']; ?></span>
+                                    <h3><?PHP echo $row2['lieu']; ?></h3>
+                                    <p><?PHP echo $row2['description']; ?></p>
 
                                     <div class="blog-btn">
                                         <a href="#" class="default-btn-one">Read More</a>
                                     </div>
                                 </div>
                             </div>
+                        </form>
                         </div>
 
-                        <div class="col-lg-12 col-md-12">
-                            <div class="single-blog-post">
-                                <figure>
-                                    <a href="#">
-                                        <img src="assets/img/blog/2.jpg" alt="blog-img">
-                                    </a>
-                                </figure>
-                                
-                                <div class="blog-post-content">
-                                    <span>22 December 2019</span>
-                                    <h3><a href="#">Tips to Protecting Business and Family</a></h3>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum Nam finibus.</p>
+                        
 
-                                    <div class="blog-btn">
-                                        <a href="#" class="default-btn-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
 
-                        <div class="col-lg-12 col-md-12">
-                            <div class="single-blog-post">
-                                <figure>
-                                    <a href="#">
-                                        <img src="assets/img/blog/3.jpg" alt="blog-img">
-                                    </a>
-                                </figure>
-                                
-                                <div class="blog-post-content">
-                                    <span>22 December 2019</span>
-                                    <h3><a href="#">Protect Your Workplace from Cyber Attacks</a></h3>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum Nam finibus.</p>
+                        
+                        
 
-                                    <div class="blog-btn">
-                                        <a href="#" class="default-btn-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12">
-                            <div class="single-blog-post">
-                                <figure>
-                                    <a href="#">
-                                        <img src="assets/img/blog/4.jpg" alt="blog-img">
-                                    </a>
-                                </figure>
-                                
-                                <div class="blog-post-content">
-                                    <span>22 December 2019</span>
-                                    <h3><a href="#">Business Debit Fees to Increase in 2019</a></h3>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum Nam finibus.</p>
-
-                                    <div class="blog-btn">
-                                        <a href="#" class="default-btn-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12">
-                            <div class="single-blog-post">
-                                <figure>
-                                    <a href="#">
-                                        <img src="assets/img/blog/5.jpg" alt="blog-img">
-                                    </a>
-                                </figure>
-                                
-                                <div class="blog-post-content">
-                                    <span>22 December 2019</span>
-                                    <h3><a href="#">Tips To Reduce Your Card Processing Costs</a></h3>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum Nam finibus.</p>
-
-                                    <div class="blog-btn">
-                                        <a href="#" class="default-btn-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 col-md-12">
-                            <div class="single-blog-post">
-                                <figure>
-                                    <a href="#">
-                                        <img src="assets/img/blog/6.jpg" alt="blog-img">
-                                    </a>
-                                </figure>
-                                
-                                <div class="blog-post-content">
-                                    <span>22 December 2019</span>
-                                    <h3><a href="#">PayPal Here Card Reader Review 2019</a></h3>
-                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum Nam finibus.</p>
-
-                                    <div class="blog-btn">
-                                        <a href="#" class="default-btn-one">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+                        <?php
+                           if ($i==6) break; }
+                        ?>
                     </div>
                 </div>
             </div>
